@@ -1,5 +1,5 @@
 
-#Distribuição Inteligente de Clientes para Gerentes Bancários
+# Distribuição Inteligente de Clientes para Gerentes Bancários
 
 📌 Sobre o Projeto
 Este repositório apresenta um caso real de otimização na distribuição de clientes para gerentes e agências bancárias, garantindo uma alocação eficiente e estratégica. O objetivo principal foi desenvolver um distribuidor automatizado que organizasse os clientes e os atribuísse aos gerentes mais próximos, respeitando regras de negócio e critérios financeiros.
