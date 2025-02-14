@@ -1,4 +1,4 @@
-# *OBS: O NOME DOS CAMPOS FOI OMITIDO POR QUESTÕES DE LGPD*
+# *OBS: O NOME DOS CAMPOS FORAM OMITIDOS POR QUESTÕES DE LGPD*
 # Distribuição Inteligente de Clientes para Gerentes Bancários
 
 📌 Sobre o Projeto
