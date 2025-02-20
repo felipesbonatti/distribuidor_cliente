@@ -77,3 +77,6 @@ O modelo desenvolvido trouxe os seguintes benefícios:
 - **Controle de Versão:** [Git](https://git-scm.com/)
 
 
+## 💻 Autor
+
+- **Felipe Bonatti** - [GitHub](https://github.com/felipesbonatti) | [LinkedIn](https://www.linkedin.com/in/felipebsdelima)
