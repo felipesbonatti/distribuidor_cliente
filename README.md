@@ -1,82 +1,155 @@
-# 📊 Distribuição Inteligente de Clientes para Gerentes Bancários
+# **🏦 Sistema de Distribuição Inteligente de Carteira Bancária**  
 
-[![GitHub last commit](https://img.shields.io/github/last-commit/felipesbonatti/distribuidor_cliente?style=flat-square)](https://github.com/felipesbonatti/distribuidor_cliente)
-[![GitHub repo size](https://img.shields.io/github/repo-size/felipesbonatti/distribuidor_cliente?style=flat-square)](https://github.com/felipesbonatti/distribuidor_cliente)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-
-<p align="center">
-  <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="Logo GitHub" width="100">
-</p>
+[![Licença MIT](https://img.shields.io/badge/Licença-MIT-blue.svg)](https://opensource.org/licenses/MIT)  
+[![Python 3.8+](https://img.shields.io/badge/Python-3.8+-blue?logo=python)](https://www.python.org/)  
+[![PySpark 3.3+](https://img.shields.io/badge/PySpark-3.3+-E25A1C?logo=apachespark)](https://spark.apache.org/)  
+[![Databricks](https://img.shields.io/badge/Databricks-Runtime_10.4+-FF3621?logo=databricks)](https://databricks.com/)  
 
 ---
 
-## 📌 Sobre o Projeto
+## **📌 Visão Geral**  
+Solução **PySpark** para distribuição **automatizada e balanceada** de clientes para gerentes bancários, garantindo:  
 
-Este repositório apresenta um **caso real de otimização na distribuição de clientes para gerentes e agências bancárias**, desenvolvido para garantir uma alocação eficiente, estratégica e alinhada com as regras de negócio. O projeto foi criado com o objetivo de automatizar a distribuição de clientes, priorizando critérios como **proximidade geográfica** e **rentabilidade**, enquanto mantém a coerência com o histórico de atendimento.
-
-O sistema foi projetado para **melhorar a gestão de relacionamento com clientes** e **maximizar a performance dos gerentes**, contribuindo para a eficiência operacional e estratégica do negócio.
-
-<p style="color: red; font-size: 14px;">
-  <strong>Observação:</strong> Por questões de conformidade com a <strong>Lei Geral de Proteção de Dados (LGPD)</strong>, os nomes dos campos e informações sensíveis foram omitidos ou anonimizados neste repositório.
-</p>
+✔ **Alocação geográfica inteligente** (`localpara`)  
+✔ **Balanceamento justo** (método randômico)  
+✔ **Validação rigorosa** (dados completos e sem duplicidades)  
+✔ **Logging detalhado** para rastreabilidade  
 
 ---
 
-## 🎯 Objetivo
+## **📊 Fluxo do Sistema**  
 
-O principal objetivo deste projeto foi **criar um modelo de alocação de clientes** que:
-
-- **Prioriza a proximidade geográfica** entre clientes e gerentes (utilizando chave localpara).
-- **Foca na rentabilidade**, priorizando clientes com maior **MOB (Margem Operacional Bruta)**.
-- **Mantém a coerência** com clientes já atendidos por determinados gerentes, garantindo continuidade no relacionamento.
-
----
-
-## ⚙️ Solução Entregue
-
-A solução desenvolvida inclui:
-
-### 1. **Distribuição Inteligente de Clientes**
-   - Alocação automática de clientes com base em **proximidade geográfica** e **estratégia de rentabilidade**.
-   - Priorização de clientes com maior **MOB**, garantindo foco nos mais rentáveis.
-
-### 2. **Integração com Bases Existentes**
-   - Conexão com a base de dados de gerentes e clientes, garantindo **atualização em tempo real**.
-   - Respeito às **regras de negócio** e **critérios financeiros** estabelecidos.
-
-### 3. **Tabela Analítica Final**
-   - Detalhamento da alocação de cada cliente por gerente.
-   - Inclusão de **indicadores de rentabilidade** e **performance** para análise estratégica.
+```mermaid
+graph TD
+    A[Base de Clientes] --> B{Processamento Spark}
+    C[Base de Gerentes] --> B
+    B --> D[Join por localpara]
+    D --> E[Distribuição Randômica]
+    E --> F[Validação de Qualidade]
+    F --> G[(Tabela Final)]
+    style A fill:#4CAF50,stroke:#388E3C
+    style C fill:#2196F3,stroke:#0D47A1
+    style G fill:#FF9800,stroke:#F57C00
+```
 
 ---
 
-## 📊 Resultados
+## **⚙️ Arquitetura Técnica**  
 
-O modelo desenvolvido trouxe os seguintes benefícios:
-
-- **Eficiência Operacional:** Redução do tempo necessário para alocação de clientes.
-- **Otimização de Rentabilidade:** Foco em clientes com maior **MOB**, maximizando o retorno financeiro.
-- **Melhoria no Relacionamento:** Manutenção da coerência no atendimento, fortalecendo o vínculo entre clientes e gerentes.
+```mermaid
+flowchart TB
+    subgraph "Spark Cluster"
+    Driver --> Executor1
+    Driver --> Executor2
+    Driver --> ExecutorN
+    end
+    Executor1 --> HDFS[(HDFS)]
+    Executor2 --> HDFS
+    ExecutorN --> HDFS
+```
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## **📈 Métricas-Chave**  
 
-<div style="display: flex; flex-wrap: wrap; gap: 10px;">
-  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
-  <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas">
-  <img src="https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white" alt="NumPy">
-  <img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite">
-  <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git">
-</div>
+```mermaid
+pie
+    title Tempo por Etapa (Exemplo)
+    "Carga de Dados" : 25
+    "Join e Filtros" : 30
+    "Distribuição" : 35
+    "Validação" : 10
+```
 
-- **Linguagem de Programação:** [Python](https://www.python.org/)
-- **Bibliotecas:** Pandas, NumPy, Geopy (para cálculos geográficos)
-- **Banco de Dados:** [SQLite](https://www.sqlite.org/index.html) ou outro SGBD (dependendo da implementação)
-- **Ferramentas de Análise:** Jupyter Notebook, Excel (para visualização de dados)
-- **Controle de Versão:** [Git](https://git-scm.com/)
+---
+
+## **💡 Como Funciona?**  
+
+### **1. Carga de Dados**  
+```python
+clientes_df = spark.table("schema.tb_clientes").filter(F.col("localpara").isNotNull())
+gerentes_df = spark.table("schema.tb_clientes").filter(F.col("localpara").isNotNull())
+```
+
+### **2. Algoritmo de Distribuição**  
+```python
+window = Window.partitionBy("nr_pess").orderBy(F.rand())
+distribuicao = (clientes_df.join(gerentes_df, "localpara")
+                .withColumn("rank", F.row_number().over(window))
+                .filter(F.col("rank") == 1))
+```
+
+### **3. Validação**  
+```python
+duplicados = df.groupBy("nr_pess").agg(F.count("*").alias("qtd")).filter(F.col("qtd") > 1)
+if duplicados.count() > 0:
+    raise Exception("Clientes duplicados!")
+```
+
+---
+
+## **🚀 Resultados Garantidos**  
+
+| **Métrica**               | **Resultado**                |
+|---------------------------|------------------------------|
+| **Clientes Distribuídos** | 100% sem duplicidades        |
+| **Balanceamento**         | Aleatoriedade controlada     |
+| **Logging**              | Rastreio completo por etapa  |
+| **Performance**          | Otimizado para 600 partições |
+
+---
+
+## **🛠️ Como Executar?**  
+
+1. **Configuração**:  
+   ```python
+   @dataclass
+   class Config:
+       LIMITE_CLIENTES: int = 1473  # Ajuste conforme necessidade
+   ```
+
+2. **Submissão**:  
+   ```bash
+   spark-submit --master yarn --deploy-mode cluster main.py
+   ```
+
+3. **Monitoramento**:  
+   ```python
+   logger.info(f"Clientes processados: {df.count()}")
+   ```
+
+---
+
+## **📌 Exemplo de Saída**  
+
+```mermaid
+gantt
+    title Tempo de Execução (Exemplo)
+    dateFormat  HH:mm:ss
+    section Processamento
+    Carga de Dados      :a1, 00:00:00, 00:02:30
+    Join e Distribuição :a2, after a1, 00:05:00
+    Validação           :a3, after a2, 00:01:00
+```
+
+---
+
+## **🔧 Stack Utilizada**  
+
+| **Tecnologia**       | **Uso**                          |
+|-----------------------|----------------------------------|
+| PySpark              | Processamento distribuído        |
+| Databricks           | Ambiente de execução             |
+| Python               | Lógica de negócio               |
+| Git                  | Controle de versão              |
+
+---
+
+ 
+[![LinkedIn](https://img.shields.io/badge/Felipe_Bonatti-LinkedIn-blue?logo=linkedin)](https://www.linkedin.com/in/felipebsdelima)  
 
 
-## 💻 Autor
+---
 
-- **Felipe Bonatti** - [GitHub](https://github.com/felipesbonatti) | [LinkedIn](https://www.linkedin.com/in/felipebsdelima)
+> **Nota**: Projeto em conformidade com **LGPD**. Dados sensíveis foram anonimizados.  
+
